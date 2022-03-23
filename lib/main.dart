@@ -1,4 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:wallpapers/src/common/repositories/image_repository.dart';
+import 'package:wallpapers/src/features/home/container/home_container.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +18,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      home: HomeContainer(
+        repository: ImageRepository(dio: Dio()),
+      ),
     );
   }
 }
