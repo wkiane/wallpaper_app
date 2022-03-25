@@ -8,12 +8,13 @@ abstract class IImageRepository {
 }
 
 class ImageRepository implements IImageRepository {
+  ImageRepository({required this.dio});
   final Dio dio;
 
   @override
   Future<List<ImageModel>> getImages() async {
     try {
-      final url = '${ApiConsts.apiUrl}/search?purity=100';
+      final url = '${ApiConsts.apiUrl}/search?purity=100&q=landscape';
       final response = await dio.get(url);
       final json = Map<String, dynamic>.from(response.data);
       final list = json['data'] as List<dynamic>;
@@ -22,6 +23,4 @@ class ImageRepository implements IImageRepository {
       throw Failure(message: 'Não foi possível carregar os dados');
     }
   }
-
-  ImageRepository({required this.dio});
 }
