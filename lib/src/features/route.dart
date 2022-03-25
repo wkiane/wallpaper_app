@@ -10,27 +10,27 @@ class AppRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      initialRoute: '/',
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case '/':
-            return MaterialPageRoute(builder: (context) {
-              return HomeContainer(
-                repository: repository,
-                onItemTap: (route, arguments) {
-                  Navigator.of(context).pushNamed(route, arguments: arguments);
-                },
-              );
-            });
-          case '/details':
-            return MaterialPageRoute(builder: (context) {
-              return ShowWallpaperContainer(
-                repository: repository,
-                arguments: (settings.arguments) as ShowWallpaperArgs,
-              );
-            });
-        }
-      },
-    );
+        initialRoute: '/',
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/':
+              return MaterialPageRoute(builder: (context) {
+                return HomeContainer(
+                  repository: repository,
+                  onItemTap: (route, arguments) {
+                    Navigator.of(context)
+                        .pushNamed(route, arguments: arguments);
+                  },
+                );
+              });
+            case '/details':
+              return MaterialPageRoute(builder: (context) {
+                return ShowWallpaperContainer(
+                  repository: repository,
+                  arguments: (settings.arguments) as ShowWallpaperArgs,
+                );
+              });
+          }
+        });
   }
 }

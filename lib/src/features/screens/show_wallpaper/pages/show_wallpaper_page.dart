@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 
 class ShowWallpaperPage extends StatelessWidget {
   const ShowWallpaperPage({Key? key, required this.original}) : super(key: key);
@@ -12,13 +13,12 @@ class ShowWallpaperPage extends StatelessWidget {
         backgroundColor: const Color(0x44000000),
         elevation: 0,
       ),
-      body: Image.network(
-        original,
-        fit: BoxFit.cover,
-        height: double.infinity,
-        width: double.infinity,
-        alignment: Alignment.center,
-        loadingBuilder: _loadImage,
+      body: PhotoView.customChild(
+        child: Image.network(
+          original,
+          alignment: Alignment.center,
+          loadingBuilder: _loadImage,
+        ),
       ),
     );
   }
