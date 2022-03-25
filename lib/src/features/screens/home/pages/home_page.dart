@@ -11,24 +11,35 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
+      appBar: AppBar(
+        title: const Text('Cool Wallpapers'),
+      ),
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+        ),
         itemCount: list.length,
         itemBuilder: (BuildContext context, int index) {
           final item = list[index];
-
-          return InkWell(
-            onTap: () => onItemTap(
-              '/details',
-              ShowWallpaperArgs(original: item.original),
-            ),
-            // child: Image.network(item.thumb),
-            child: Ink.image(
-              image: NetworkImage(item.thumb),
-              width: 110,
-              height: 110,
-            ),
-          );
+          return _image(item, onItemTap);
         },
+      ),
+    );
+  }
+
+  _image(item, onItemTap) {
+    return GestureDetector(
+      onTap: () => onItemTap(
+        '/details',
+        ShowWallpaperArgs(original: item.original),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: NetworkImage(item.thumb),
+          ),
+        ),
       ),
     );
   }
