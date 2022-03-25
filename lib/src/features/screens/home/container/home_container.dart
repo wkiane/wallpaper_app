@@ -5,7 +5,6 @@ import 'package:wallpapers/src/common/repositories/image_repository.dart';
 import 'package:wallpapers/src/common/widgets/po_error.dart';
 import 'package:wallpapers/src/common/widgets/po_loading.dart';
 import 'package:wallpapers/src/features/screens/home/pages/home_page.dart';
-import 'package:wallpapers/src/features/screens/show_wallpaper/container/show_wallpaper_container.dart';
 
 class HomeContainer extends StatelessWidget {
   const HomeContainer({
@@ -14,7 +13,7 @@ class HomeContainer extends StatelessWidget {
     required this.onItemTap,
   }) : super(key: key);
   final ImageRepository repository;
-  final Function(String, ShowWallpaperArgs) onItemTap;
+  final Function(String, ImageModel) onItemTap;
 
   @override
   Widget build(BuildContext context) {
