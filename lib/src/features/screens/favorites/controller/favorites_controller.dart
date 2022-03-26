@@ -6,21 +6,24 @@ part "favorites_controller.g.dart";
 class FavoritesController = FavoritesControllerBase with _$FavoritesController;
 
 abstract class FavoritesControllerBase with Store {
-  @observable
-  List<ImageModel> favorites = [];
+  @computed
+  int get favoritesCount => favorites.length;
 
+  // --------------- favorites list ---------------------- //
+  @observable
+  ObservableList<ImageModel> favorites = ObservableList<ImageModel>.of([]);
   @action
   addOrRemoveFavorite(ImageModel image) {
-    final favsCopy = favorites;
+    var duplicated = favorites.any((item) => item.id == image.id);
+    !duplicated
+        ? favorites.add(image)
+        : favorites.removeWhere((item) => item.id == image.id);
+    // final List<String> favoritesToDB = favorites.map((fav) => jsonEncode(fav.toJson())).toList();
+  }
+  // --------------- favorites list ---------------------- //
 
-    var duplicated = favsCopy.any((item) => item.id == image.id);
-
-    if (!duplicated) {
-      favsCopy.add(image);
-      favorites = favsCopy;
-    } else {
-      favsCopy.removeWhere((item) => item.id == image.id);
-      favorites = favsCopy;
-    }
+  // helpers
+  isFavorite(String id) {
+    return favorites.any((item) => item.id == id);
   }
 }

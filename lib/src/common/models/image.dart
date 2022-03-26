@@ -11,5 +11,8 @@ class ImageModel {
     );
   }
 
+  Map<String, dynamic> toJson() =>
+      {'id': id, 'original': original, 'thumb': thumb};
+
   ImageModel({required this.id, required this.original, required this.thumb});
 }

@@ -19,8 +19,7 @@ class ShowWallpaperPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: Observer(builder: (_) {
-              final isFav = favoritesController.favorites
-                  .any((item) => item.id == image.id);
+              final isFav = favoritesController.isFavorite(image.id);
               final icon = isFav ? Icons.favorite : Icons.favorite_border;
               return Icon(icon);
             }),
