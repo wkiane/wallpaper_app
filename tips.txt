@@ -1,6 +1,9 @@
 # escutar por mudanças em stores
 flutter pub run build_runner watch ou mobxcodegen
 
+# gerar apk
+flutter build apk --target-platform android-arm --analyze-size
+
 
 # filtros no mobx
 @observable
